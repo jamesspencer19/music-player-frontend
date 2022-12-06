@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rebmem Engineering Media Player</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+        </head>
+        <body>
+            <div class="title">
+                <h1>Music Player</h1>
+            </div>
+            <div class="currently-playing">
+                <p>{{currentsong}}</p>
+            </div>
+            <div class="music">
+                <div class="box">
+                    <img src="assets\taylor.jpg" alt="">
+                </div>
+                <audio controls>
+                    <source src="assets\Taylor_Swift_-_Shake_It_Off_(getmp3.pro).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        <nav class="nav">
+            <a routerLink="/library" class="nav__link">
+                <i class="material-icons nav__icon">local_library</i>
+                <span class="nav__text">Songs</span>
+            </a>
+            <a routerLink="/play" class="nav__link nav__link--active">
+                <i class="material-icons nav__icon">play_arrow</i>
+                <span class="nav__text">Player</span>
+            </a>
+            <a routerLink="/account" class="nav__link">
+                <i class="material-icons nav__icon">person</i>
+                <span class="nav__text">Account</span>
+            </a>
+        </nav>
+    </body>
+</html>

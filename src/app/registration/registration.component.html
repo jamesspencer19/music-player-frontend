@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<body class="text-center">
+  <main class="form-signin w-100 m-auto">
+    <form #loginform="ngForm" (ngSubmit)="signUpUser()">
+      <img class="mb-4" src="assets\Rebmem Engineering.png" alt="">
+      <h1 class="h3 mb-3 fw-normal">Please Sign Up</h1>
+
+      <div class="form-floating">
+        <input type="username" class="form-control" name = "username" placeholder="name@example.com"
+          [(ngModel)]="user.username" #username="ngModel">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name = "password" placeholder="Password"
+          [(ngModel)]="user.password" required #password="ngModel">
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <small [routerLink]="['/registration']"><a href="/">Back to Login
+            here!</a></small>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" [disabled]="loginform.form.invalid" type="submit">Sign Up</button>
+      <p class="mt-5 mb-3 text-muted">&copy; Made by James Spencer</p>
+    </form>
+  </main>
+</body>
+

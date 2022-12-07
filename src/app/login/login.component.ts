@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegistrationService } from '../registration.service';
+import { BackendService } from '../backend.service';
 import { User } from '../user';
 
 @Component({
@@ -10,7 +10,7 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _service: RegistrationService, private _router: Router) { }
+  constructor(private _service: BackendService, private _router: Router) { }
 
   user = new User()
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("Response Recieved")
+        console.log(data)
         localStorage.setItem('token', 'loggedin')
         localStorage.setItem('username', this.user.username)
         this._router.navigate(['/play'])

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectControlValueAccessor } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timeInterval } from 'rxjs';
-import { RegistrationService } from '../registration.service';
+import { BackendService } from '../backend.service';
 import { User } from '../user';
 
 @Component({
@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   user = new User()
   success = false;
 
-  constructor(private _service: RegistrationService, private _router: Router) { }
+  constructor(private _service: BackendService, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +24,7 @@ export class RegistrationComponent implements OnInit {
     this._service.signUpUserFromRemote(this.user).subscribe(
       data => {
         this.success = true;
+        alert("Successfully Created Account - Redirecting")
         setTimeout(()=>this._router.navigate(['']), 5000)
       },
       error=> {

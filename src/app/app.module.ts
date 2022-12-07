@@ -10,6 +10,7 @@ import { PlayComponent } from './play/play.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LibraryComponent } from './library/library.component';
 import { AccountComponent } from './account/account.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AccountComponent } from './account/account.component';
     PlayComponent,
     LibraryComponent,
     AccountComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

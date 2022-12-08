@@ -11,6 +11,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LibraryComponent } from './library/library.component';
 import { AccountComponent } from './account/account.component';
 import { SearchPipe } from './search.pipe';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SearchPipe } from './search.pipe';
     LibraryComponent,
     AccountComponent,
     SearchPipe,
+    PlaylistComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,16 +16,17 @@ export class PlayComponent implements OnInit {
   currentsong:any
   currentimage: any
   currentname: any
+  playlist:any[] = this.songservice.playlist
 
   ngOnInit(): void {
     this.currentname = this.songservice.currentname
     this.currentsong = this.songservice.currentsong
     this.currentimage = this.songservice.currentimage
-    console.log(this.currentname, this.currentsong, this.currentimage)
     if(this.currentsong == undefined){
       this.currentname = "..."
       this.currentimage = "assets/blank.png"
     }
+    console.log(this.playlist)
   }
 
 }

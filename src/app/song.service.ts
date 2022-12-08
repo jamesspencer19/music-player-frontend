@@ -8,13 +8,21 @@ export class SongService {
   public currentsong:any
   public currentimage: any
   public currentname:any
-  public playlist:[]
+  public playlist:any[] = [];
 
   setSong(song:any,image:any,name:any){
     this.currentsong = song
     this.currentimage = image
     this.currentname=name
   }
-  
+
+  addSongToPlaylist(songdata:any){
+    console.log(songdata)
+    if(this.playlist.indexOf(songdata) !== -1){
+      alert("Already Exists")
+    }
+    this.playlist.push(songdata)
+    console.log(this.playlist)
+  }
 
 }

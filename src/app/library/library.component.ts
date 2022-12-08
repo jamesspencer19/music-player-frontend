@@ -30,7 +30,6 @@ export class LibraryComponent implements OnInit {
   }
 
   addToPlaylist(e:any):void {
-    console.log(e)
     this.songservice.addSongToPlaylist(e)
   }
 

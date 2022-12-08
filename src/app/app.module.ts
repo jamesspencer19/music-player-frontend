@@ -22,7 +22,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     LibraryComponent,
     AccountComponent,
     SearchPipe,
-    PlaylistComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,

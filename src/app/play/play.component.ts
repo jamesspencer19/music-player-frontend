@@ -26,7 +26,6 @@ export class PlayComponent implements OnInit {
       this.currentname = "..."
       this.currentimage = "assets/blank.png"
     }
-    console.log(this.playlist)
   }
 
 }

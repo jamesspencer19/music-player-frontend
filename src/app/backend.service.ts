@@ -11,8 +11,9 @@ export class BackendService {
 
   constructor(private _http: HttpClient) { }
 
+  url:string
+
   public loginUserFromRemote(user : User):Observable<any>{
-    console.log(this._http.post<any>('authentication/login', user).subscribe())
     return this._http.post<any>('authentication/login', user)
   }
 
@@ -22,6 +23,20 @@ export class BackendService {
 
   public getMusicLibrary():Observable<any>{
     return this._http.get<any>('music/library')
+  }
+
+  public setPlaylist(username:any):Observable<any>{
+    return this._http.post<any>('playlist/addplaylist',username)
+  }
+
+  public getPlaylist(username:any):Observable<any>{
+    this.url = 'playlist/getplaylist/' + username
+    return this._http.get<any>(this.url)
+  }
+
+  public getMusicById(id:any):Observable<any>{
+    this.url = 'music/song/' + id
+    return this._http.get<any>(this.url)
   }
 
 }

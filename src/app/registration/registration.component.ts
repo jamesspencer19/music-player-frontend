@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   user = new User()
   success = false;
 
-  constructor(private _service: BackendService, private _router: Router) { }
+  constructor(private _service: BackendService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
       data => {
         this.success = true;
         alert("Successfully Created Account - Redirecting")
-        setTimeout(()=>this._router.navigate(['']), 5000)
+        setTimeout(()=>this.router.navigate(['']), 5000)
       },
       error=> {
         console.log("Exception Occurred")

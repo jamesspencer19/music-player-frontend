@@ -32,12 +32,12 @@
                     <td>{{e.song}}</td>
                     <td>{{e.artist}}</td>
                     <td>
-                        <button>
+                        <button (click)="playSong(e)">
                             <i class="material-icons nav__icon">play_arrow</i>
                         </button>
                     </td>
                     <td>
-                        <button>
+                        <button (click)="addToPlaylist(e)">
                             <i class="material-icons nav__icon">playlist_add</i>
                         </button>
                     </td>

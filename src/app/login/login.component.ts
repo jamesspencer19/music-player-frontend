@@ -10,7 +10,7 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _service: BackendService, private _router: Router) { }
+  constructor(private _service: BackendService, private router: Router) { }
 
   user = new User()
 
@@ -21,10 +21,9 @@ export class LoginComponent implements OnInit {
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("Response Recieved")
-        console.log(data)
         localStorage.setItem('token', 'loggedin')
         localStorage.setItem('username', this.user.username)
-        this._router.navigate(['/play'])
+        this.router.navigate(['/play'])
       },
       error=> {
         console.log("Exception Occurred")

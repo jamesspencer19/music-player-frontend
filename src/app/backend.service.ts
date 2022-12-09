@@ -26,10 +26,6 @@ export class BackendService {
     return this._http.get<any>('music/library')
   }
 
-  public setPlaylist(username:any):Observable<any>{
-    return this._http.post<any>('playlist/addplaylist',username)
-  }
-
   public getPlaylist(username:any):Observable<any>{
     this.url = 'playlist/getplaylist/' + username
     return this._http.get<any>(this.url)
@@ -40,8 +36,8 @@ export class BackendService {
     return this._http.get<any>(this.url)
   }
 
-  public deleteFromPlaylist(userplaylist:UserPlaylist):Observable<any>{
-    return this._http.patch<any>('playlist/deletesong/', userplaylist)
+  public editPlaylist(userplaylist:UserPlaylist):Observable<any>{
+    return this._http.patch<any>('playlist/editplaylist', userplaylist)
   }
 
 }

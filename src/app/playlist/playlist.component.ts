@@ -26,7 +26,13 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.getPlaylist(localStorage.getItem('username')).subscribe(data=>{
-      data.songids.split(',').forEach((element:any) => {
+      var playlistarray = data.songids.split(',')
+      let last:any = playlistarray[playlistarray.length-1];
+      if(last == ''){
+        playlistarray.pop()
+      }
+      console.log(playlistarray)
+      playlistarray.forEach((element:any) => {
         this.backendService.getMusicById(element).subscribe(data=>
           this.playlist.push(data))})
     }
@@ -49,11 +55,10 @@ export class PlaylistComponent implements OnInit {
         this.userplaylist.songids = newplaylist.toString()
         this.userplaylist.username = localStorage.getItem('username')
         console.log(this.userplaylist)
-        this.backendService.deleteFromPlaylist(this.userplaylist).subscribe(data=>{
+        this.backendService.editPlaylist(this.userplaylist).subscribe(data=>{
         data.songids.split(',').forEach((element:any) => {
-          this.backendService.getMusicById(element).subscribe(data=>
-            this.playlist = [],
-            this.playlist.push(data))
+          this.backendService.getMusicById(element)
+          window.location.reload()
           })
         }
         )

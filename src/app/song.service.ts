@@ -17,9 +17,6 @@ export class SongService {
   }
 
   addSongToPlaylist(songdata:any){
-    if(this.playlist.indexOf(songdata) !== -1){
-      alert("Already Exists")
-    }
     this.playlist.push(songdata)
   }
 

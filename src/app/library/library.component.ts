@@ -15,31 +15,28 @@ export class LibraryComponent implements OnInit {
 
   searchText:any;
 
-  data=[];
+  data:[];
 
   userplaylist = new UserPlaylist
   
-  constructor(private service: BackendService, private songservice: SongService, private router:Router) { }
+  constructor(private backendservice: BackendService, private songservice: SongService, private router:Router) { }
 
   ngOnInit(): void {
-    this.service.getMusicLibrary().subscribe(
-      data => this.data = data
-    )
+    this.data = JSON.parse(this.backendservice.getMusicLibrary())
   }
 
   playSong(e:any):void {
-    this.songservice.setSong(e.songpath,e.imagepath,e.song)
+    localStorage.setItem('playlist', "")
+    this.songservice.playlist = []
+    this.songservice.addSongToPlaylist(e.id)
     this.router.navigate(['/play'])
   }
 
   addToPlaylist(e:any):void {
-    this.service.getPlaylist(localStorage.getItem('username')).subscribe(data=>{
-      this.userplaylist.username = localStorage.getItem('username')
-      this.userplaylist.songids = data.songids+e.id+','.toString()
-      console.log(this.userplaylist)
-      this.service.editPlaylist(this.userplaylist).subscribe(data=>
-        console.log(data))
-    })
+    var playlist = JSON.parse(this.backendservice.getPlaylist(localStorage.getItem('username')))
+    this.userplaylist.username = localStorage.getItem('username')
+    this.userplaylist.songids = playlist.songids+e.id+','.toString()
+    this.backendservice.editPlaylist(this.userplaylist).subscribe()
   }
 
 }

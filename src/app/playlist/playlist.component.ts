@@ -25,36 +25,67 @@ export class PlaylistComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.backendService.getPlaylist(localStorage.getItem('username')).subscribe(data=>{
-      var playlistarray = data.songids.split(',')
+      var playlist = JSON.parse(this.backendService.getPlaylist(localStorage.getItem('username')))
+      var playlistarray = playlist.songids.split(',')
       let last:any = playlistarray[playlistarray.length-1];
       if(last == ''){
         playlistarray.pop()
       }
-      console.log(playlistarray)
-      playlistarray.forEach((element:any) => {
-        this.backendService.getMusicById(element).subscribe(data=>
-          this.playlist.push(data))})
-    }
-    )
+      for(var e in playlistarray){
+        var music = JSON.parse(this.backendService.getMusicById(playlistarray[e]))
+          this.playlist.push(music)
+        }
+  }
+
+  shufflePlaylist(){
+    localStorage.setItem('playlist',"")
+    this.songService.playlist = []
+    var playlist = JSON.parse(this.backendService.getPlaylist(localStorage.getItem('username')))
+      var playlistarray = playlist.songids.split(',')
+      let last:any = playlistarray[playlistarray.length-1];
+      if(last == ''){
+        playlistarray.pop()
+      }
+      var m = playlistarray.length, t, i;
+
+      while (m) {    
+       i = Math.floor(Math.random() * m--);
+       t = playlistarray[m];
+       playlistarray[m] = playlistarray[i];
+       playlistarray[i] = t;
+      }
+      this.songService.addSongToPlaylist(playlistarray)
+      this.router.navigate(['/play'])
+  }
+  
+  playPlaylist(){
+    localStorage.setItem('playlist',"")
+    this.songService.playlist = []
+    var playlist = JSON.parse(this.backendService.getPlaylist(localStorage.getItem('username')))
+      var playlistarray = playlist.songids.split(',')
+      let last:any = playlistarray[playlistarray.length-1];
+      if(last == ''){
+        playlistarray.pop()
+      }
+      this.songService.addSongToPlaylist(playlistarray)
+      this.router.navigate(['/play'])
   }
 
   playSong(e:any):void {
-    this.songService.setSong(e.songpath,e.imagepath,e.song)
+    localStorage.setItem('playlist',"")
+    this.songService.playlist = []
+    this.songService.addSongToPlaylist(e.id)
     this.router.navigate(['/play'])
   }
 
   deleteFromPlaylist(e:any){
-    this.backendService.getPlaylist(localStorage.getItem('username')).subscribe(data=>{
-      var newplaylist = data.songids.split(',')
-      console.log(newplaylist)
-      const index = data.songids.split(',').indexOf(e.id.toString())
+    var playlist = JSON.parse(this.backendService.getPlaylist(localStorage.getItem('username')))
+      var newplaylist = playlist.songids.split(',')
+      const index = playlist.songids.split(',').indexOf(e.id.toString())
       if (index !== -1) {
         newplaylist.splice(index, 1)
-        console.log(newplaylist.toString())
         this.userplaylist.songids = newplaylist.toString()
         this.userplaylist.username = localStorage.getItem('username')
-        console.log(this.userplaylist)
         this.backendService.editPlaylist(this.userplaylist).subscribe(data=>{
         data.songids.split(',').forEach((element:any) => {
           this.backendService.getMusicById(element)
@@ -63,7 +94,6 @@ export class PlaylistComponent implements OnInit {
         }
         )
       }
-    })
   }
 
 

@@ -13,7 +13,7 @@
             <h1>Music Player</h1>
         </div>
         <div class="currently-playing">
-            <p>{{currentname}}</p>
+            <h2>{{currentname}}</h2>
         </div>
         <div class="player">
             <div class="music">
@@ -21,20 +21,27 @@
                     <img src="{{currentimage}}" alt="">
                 </div>
                 <audio controls>
-                    <source src="{{currentsong}}" type="audio/mpeg">
+                    <source src="{{currentsong}}" type="audio/mp3">
                 </audio>
             </div>
-            <div class="next">Up Next</div>
+        </div>
+        <div class="next">Up Next
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>Song</th>
                         <th>Artist</th>
+                        <th>Play</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let e of playlist">
                     <td>{{e.song}}</td>
                     <td>{{e.artist}}</td>
+                    <td>
+                        <button (click)="playSong(e)">
+                            <i class="material-icons nav__icon">play_arrow</i>
+                        </button>
+                    </td>
                 </tbody>
             </table>
         </div>

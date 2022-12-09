@@ -14,26 +14,50 @@ export class BackendService {
 
   url:string
 
+  //send login http request to authorise that the credentials entered match those in the database
   public loginUserFromRemote(user : User):Observable<any>{
     return this._http.post<any>('authentication/login', user)
   }
 
+  //adds the users username and password to the database
   public signUpUserFromRemote(user : User):Observable<any>{
     return this._http.post<any>('authentication/signup', user)
   }
 
-  public getMusicLibrary():Observable<any>{
-    return this._http.get<any>('music/library')
+  getMusicLibrary() {
+    var request = new XMLHttpRequest();
+    this.url = 'music/library'
+    request.open('GET', this.url, false);
+    request.send();
+    if (request.status === 200) {
+        return request.response;
+    } else {
+        throw new Error('request failed');
+    }
   }
 
-  public getPlaylist(username:any):Observable<any>{
+  getPlaylist(username:any) {
+    var request = new XMLHttpRequest();
     this.url = 'playlist/getplaylist/' + username
-    return this._http.get<any>(this.url)
+    request.open('GET', this.url, false);
+    request.send();
+    if (request.status === 200) {
+        return request.response;
+    } else {
+        throw new Error('request failed');
+    }
   }
 
-  public getMusicById(id:any):Observable<any>{
+  getMusicById(id:any) {
+    var request = new XMLHttpRequest();
     this.url = 'music/song/' + id
-    return this._http.get<any>(this.url)
+    request.open('GET', this.url, false);
+    request.send();
+    if (request.status === 200) {
+        return request.response;
+    } else {
+        throw new Error('request failed');
+    }
   }
 
   public editPlaylist(userplaylist:UserPlaylist):Observable<any>{

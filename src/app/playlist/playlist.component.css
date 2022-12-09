@@ -4,6 +4,19 @@
     align-items: center;
 }
 
+.play{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.shuffle{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 img{
     width: 100px;
     height: 80px;

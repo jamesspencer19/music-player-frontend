@@ -11,7 +11,17 @@
         <div class="title">
             <h1>My Playlist</h1>
         </div>
-        <div class="searchbar">
+        <div class="play">
+            <button class="shuffle" (click)="playPlaylist()">
+                Play From Start
+                <i class="material-icons nav__icon">play_arrow</i>
+            </button>
+        </div>
+        <div class="shuffle">
+            <button class="shuffle" (click)="shufflePlaylist()">
+                Shuffle Playlist
+                <i class="material-icons nav__icon">shuffle</i>
+            </button>
         </div>
         <div class="container p-5">
             <input class="form-control" type="text" placeholder="Search Music Library" [(ngModel)]="searchText" style="text-align: center;">

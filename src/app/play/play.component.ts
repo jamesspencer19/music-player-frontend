@@ -62,6 +62,7 @@ export class PlayComponent implements OnInit {
     }
     array.shift()
     localStorage.setItem('playlist', array.toString())
+    window.location.reload()
   }
 
 }

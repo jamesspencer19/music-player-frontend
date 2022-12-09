@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
         console.log("Response Recieved")
         localStorage.setItem('token', 'loggedin')
         localStorage.setItem('username', this.user.username)
+        localStorage.setItem('playlist', "")
         this.router.navigate(['/play'])
       },
       error=> {

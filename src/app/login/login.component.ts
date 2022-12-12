@@ -17,8 +17,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //login user verifiying credentials
   loginUser(){
     this._service.loginUserFromRemote(this.user).subscribe(
+      //if the login request is successfull navigate to the play page
       data => {
         console.log("Response Recieved")
         localStorage.setItem('token', 'loggedin')
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('playlist', "")
         this.router.navigate(['/play'])
       },
+      //if the login request is unsucessfull display the the credentials are incorrect
       error=> {
         console.log("Exception Occurred")
         alert("Invalid Username or Password")

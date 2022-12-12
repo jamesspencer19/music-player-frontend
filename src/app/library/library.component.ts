@@ -25,6 +25,7 @@ export class LibraryComponent implements OnInit {
     this.data = JSON.parse(this.backendservice.getMusicLibrary())
   }
 
+  //play selected individual song
   playSong(e:any):void {
     localStorage.setItem('playlist', "")
     this.songservice.playlist = []
@@ -32,10 +33,14 @@ export class LibraryComponent implements OnInit {
     this.router.navigate(['/play'])
   }
 
+  //add a selected song to the users playlist
   addToPlaylist(e:any):void {
+    //retrieve the current playlist
     var playlist = JSON.parse(this.backendservice.getPlaylist(localStorage.getItem('username')))
     this.userplaylist.username = localStorage.getItem('username')
+    //add the songid to the current list of song ids
     this.userplaylist.songids = playlist.songids+e.id+','.toString()
+    //update the playlist on the database
     this.backendservice.editPlaylist(this.userplaylist).subscribe()
   }
 

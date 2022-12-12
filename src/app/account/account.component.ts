@@ -15,7 +15,9 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //logout from the application
   logOut(){
+    //clear the local storage and nagivate back to login page
     localStorage.clear()
     this.router.navigate(['/'])
   }

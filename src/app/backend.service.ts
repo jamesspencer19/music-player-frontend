@@ -24,6 +24,7 @@ export class BackendService {
     return this._http.post<any>('authentication/signup', user)
   }
 
+  //retrieve all songs from the music database
   getMusicLibrary() {
     var request = new XMLHttpRequest();
     this.url = 'music/library'
@@ -36,6 +37,7 @@ export class BackendService {
     }
   }
 
+  //retrieve a playlist using the username
   getPlaylist(username:any) {
     var request = new XMLHttpRequest();
     this.url = 'playlist/getplaylist/' + username
@@ -48,6 +50,7 @@ export class BackendService {
     }
   }
 
+  //retrieve a song using the song's ID 
   getMusicById(id:any) {
     var request = new XMLHttpRequest();
     this.url = 'music/song/' + id
@@ -60,6 +63,7 @@ export class BackendService {
     }
   }
 
+  //edit the songIds within a users playlist (adding/removing songs)
   public editPlaylist(userplaylist:UserPlaylist):Observable<any>{
     return this._http.patch<any>('playlist/editplaylist', userplaylist)
   }

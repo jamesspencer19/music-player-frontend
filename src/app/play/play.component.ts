@@ -20,8 +20,10 @@ export class PlayComponent implements OnInit {
   playlist:any[] = []
   result:any
 
+  //on page load
   ngOnInit(): void {
     var array:any = []
+    //retrieve playlist
     if(localStorage.getItem('playlist')?.toString().split(',').filter(Number).length == 0){
       array = this.songservice.playlist.toString().split(',')
     }
@@ -34,12 +36,14 @@ export class PlayComponent implements OnInit {
       this.currentimage = "assets/blank.png"
       return
     }
+    //if there is only one song play the individual song
     if(array.length >1){
       let data = JSON.parse(this.backendservice.getMusicById(array[0]))
       this.currentname = data.song
       this.currentsong = data.songpath
       this.currentimage = data.imagepath
     }
+    //play multiple songs
     for(let e in array){
       let data = JSON.parse(this.backendservice.getMusicById(array[e]))
       if(e == "0"){
@@ -52,8 +56,10 @@ export class PlayComponent implements OnInit {
     }
   }
 
+  //play song using the song ID from up next queue
   playSong(e:any){
     var array:any
+    //retrieve the first song from the playlist
     if(this.songservice.playlist.toString().split(',').filter(Number).length != 0){
       array = this.songservice.playlist.toString().split(',')
     }
@@ -62,10 +68,12 @@ export class PlayComponent implements OnInit {
     }
     const index = array.indexOf(e.id.toString())
     console.log(array)
+    //remove this song from array as it is now being played
     if (index !== -1) {
       array.splice(index, 1)
     }
     array.shift()
+    //move the song to the front of the array
     array.unshift(e.id.toString())
     localStorage.setItem('playlist', array.toString())
     window.location.reload()

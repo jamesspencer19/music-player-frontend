@@ -60,7 +60,13 @@ export class PlayComponent implements OnInit {
     else{
       array = (localStorage.getItem('playlist') as string).split(',')
     }
+    const index = array.indexOf(e.id.toString())
+    console.log(array)
+    if (index !== -1) {
+      array.splice(index, 1)
+    }
     array.shift()
+    array.unshift(e.id.toString())
     localStorage.setItem('playlist', array.toString())
     window.location.reload()
   }

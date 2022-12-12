@@ -1,3 +1,5 @@
+* { border: 1px solid red; }
+
 body{
     margin: 0 0 55px 0;
 }
@@ -22,7 +24,7 @@ body{
 
 .player .music{
     position: flex;
-    width: 550px;
+    width: 800px;
     background: white;
     margin: auto;
     width: 70%;

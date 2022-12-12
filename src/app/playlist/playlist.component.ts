@@ -107,11 +107,16 @@ export class PlaylistComponent implements OnInit {
         this.userplaylist.username = localStorage.getItem('username')
         //edit the playlist in the database
         this.backendService.editPlaylist(this.userplaylist).subscribe(data=>{
-        data.songids.split(',').forEach((element:any) => {
-          this.backendService.getMusicById(element)
-          //reload page to display changes
-          window.location.reload()
-          })
+          if(data.songids.split(',').length == 1){
+            window.location.reload()
+            return
+          }else{
+            data.songids.split(',').forEach((element:any) => {
+              this.backendService.getMusicById(element)
+              //reload page to display changes
+              window.location.reload()
+              })
+          }
         }
         )
       }
